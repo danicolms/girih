@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+}
+
+:root {
+  background: white;
+}
+
+.tile {
+  width: var(--ratio);
+  object-fit: cover;
+}
+
+.is-inverted {
+  transform: scaleX(-1);
+}
+
+.row {
+  display: flex;
+}
+
+.is-row-inverted {
+  transform: scaleY(-1);
+}
