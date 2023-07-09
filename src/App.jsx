@@ -3,33 +3,27 @@ import Shape from "./Shape";
 
 const isEven = (i) => i % 2 === 0;
 
-const Tile = ({ inverted }) => (
-  <Shape className={inverted ? "tile is-inverted" : "tile"} />
-);
-
-const Row = ({ children, inverted }) => (
-  <div className={inverted ? "row is-row-inverted" : "row"}>{children}</div>
-);
-
 const setRatioCSSVariables = (ratio) => {
   document.documentElement.style.setProperty("--ratio", ratio + "%");
 };
 
-const generateTiles = (ratio) => {
-  const tiles = [];
+const generateColumns = (ratio) => {
+  const shapes = [];
   for (let i = 0; i < 100 / ratio; i++) {
-    tiles.push(<Tile key={i} inverted={!isEven(i)} />);
+    shapes.push(
+      <Shape className={!isEven(i) ? "tile is-inverted" : "tile"}/>
+    )
   }
-  return tiles;
+  return shapes;
 };
 
 const generateRows = (ratio) => {
   const rows = [];
   for (let i = 0; i < 100 / ratio; i++) {
     rows.push(
-      <Row key={i} inverted={!isEven(i)}>
-        {generateTiles(ratio)}
-      </Row>
+      <div key={i} className={!isEven(i) ? "row is-row-inverted" : "row"}>
+        {generateColumns(ratio)}
+      </div>
     );
   }
   return rows;
