@@ -1,39 +1,36 @@
 import { useEffect, useState } from "react";
-import tile from "./assets/tile.svg";
+import Shape from "./Shape";
 
-const getTile = () => <img src={tile} className="tile" />;
-const getInvertedTile = () => <img src={tile} className="tile is-inverted" />;
+const isEven = (i) => i % 2 === 0;
 
-const getRow = (children) => <div className="row">{children}</div>;
-const getInvertedRow = (children) => (
-  <div className="row is-row-inverted">{children}</div>
+const Tile = ({ inverted }) => (
+  <Shape className={inverted ? "tile is-inverted" : "tile"} />
+);
+
+const Row = ({ children, inverted }) => (
+  <div className={inverted ? "row is-row-inverted" : "row"}>{children}</div>
 );
 
 const setRatioCSSVariables = (ratio) => {
-  let root = document.querySelector(":root");
-  root.style.setProperty("--ratio", ratio + "%");
+  document.documentElement.style.setProperty("--ratio", ratio + "%");
 };
 
-const generateXAxis = (ratio) => {
-  let tiles = [];
+const generateTiles = (ratio) => {
+  const tiles = [];
   for (let i = 0; i < 100 / ratio; i++) {
-    if (i % 2 === 0) {
-      tiles.push(getTile());
-      continue;
-    }
-    tiles.push(getInvertedTile());
+    tiles.push(<Tile key={i} inverted={!isEven(i)} />);
   }
   return tiles;
 };
 
-const generateYAxis = (ratio) => {
-  let rows = [];
+const generateRows = (ratio) => {
+  const rows = [];
   for (let i = 0; i < 100 / ratio; i++) {
-    if (i % 2 === 0) {
-      rows.push(getRow(generateXAxis(ratio)));
-      continue;
-    }
-    rows.push(getInvertedRow(generateXAxis(ratio)));
+    rows.push(
+      <Row key={i} inverted={!isEven(i)}>
+        {generateTiles(ratio)}
+      </Row>
+    );
   }
   return rows;
 };
@@ -43,37 +40,34 @@ function App() {
   const [width, setWindowWidth] = useState(0);
 
   const updateDimensions = () => {
-    const width = window.innerWidth
-    setWindowWidth(width)
-  }
+    const windowWidth = window.innerWidth;
+    setWindowWidth(windowWidth);
+  };
 
-  useEffect(() => { 
+  useEffect(() => {
     updateDimensions();
-
     window.addEventListener("resize", updateDimensions);
-    return () => 
-      window.removeEventListener("resize",updateDimensions);
-   }, [])
 
-   useEffect(() => {
-    if(width < 700){
-      setRatio(6)
-      return
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (width < 700) {
+      setRatio(7);
+    } else if (width >= 700 && width < 1200) {
+      setRatio(5);
+    } else {
+      setRatio(2);
     }
-
-    if(width >= 700 && width < 1200){
-      setRatio(4)
-      return
-    }
-
-    setRatio(2)
-   }, [width])
+  }, [width]);
 
   useEffect(() => {
     setRatioCSSVariables(ratio);
   }, [ratio]);
 
-  return <div> {generateYAxis(ratio)}</div>;
+  return <div>{generateRows(ratio)}</div>;
 }
 
 export default App;
