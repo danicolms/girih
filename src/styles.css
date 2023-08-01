@@ -1,0 +1,68 @@
+@keyframes rotate-anticlockwise {
+  0%,
+  100% {
+    opacity: 100%;
+
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 50%;
+
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes rotate-clockwise {
+  0%,
+  100% {
+    opacity: 100%;
+
+    transform: scaleX(-1);
+  }
+  50% {
+    opacity: 50%;
+
+    transform: scaleX(1);
+  }
+}
+
+* {
+  margin: 0;
+}
+
+:root {
+  background: rgb(var(--white));
+}
+
+.tile {
+  opacity: 0%;
+
+  width: 2%;
+
+  object-fit: cover;
+
+  stroke: rgba(var(--black), 0.5);
+  stroke-width: 0.03px;
+
+  transition: stroke 0.1s;
+  animation: 3s ease 2 rotate-anticlockwise forwards;
+}
+
+.tile > path {
+  stroke: inherit;
+  stroke-width: inherit;
+}
+
+.is-inverted {
+  transform: scaleX(-1);
+
+  animation: 2s ease 3 rotate-clockwise forwards;
+}
+
+.row {
+  display: flex;
+}
+
+.is-row-inverted {
+  transform: scaleY(-1);
+}

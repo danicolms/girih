@@ -1,6 +1,13 @@
-const Shape = (props) => {
+import PropTypes from "prop-types";
+
+Tile.propTypes = {
+  className: PropTypes.string,
+};
+
+function Tile({ className }) {
   return (
     <svg
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       xmlSpace="preserve"
       style={{
@@ -11,7 +18,6 @@ const Shape = (props) => {
         strokeMiterlimit: 1.5,
       }}
       viewBox="0 0 1 2"
-      {...props}
     >
       <path
         d="m0 1.8 1-.5"
@@ -43,5 +49,5 @@ const Shape = (props) => {
       />
     </svg>
   );
-};
-export default Shape;
+}
+export default Tile;
