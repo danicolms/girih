@@ -1,12 +1,14 @@
-import React from "react";
+import { Fragment } from "react";
 import Girih from "./Girih";
 
-console.log("💡 Running v2.0.0");
+console.log("💡 Running v2.0.1");
 
-export const App = () => {
+function App() {
   return (
-    <React.Fragment>
+    <Fragment>
       <Girih />
-    </React.Fragment>
+    </Fragment>
   );
-};
+}
+
+export default App;

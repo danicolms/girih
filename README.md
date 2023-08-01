@@ -25,6 +25,7 @@ Welcome to my girih repository! This project showcases the creation of a islamic
 Girih patterns have been used for centuries in the architecture of Islamic buildings, manuscripts, and decorative arts. These intricate designs are composed of a combination of geometric shapes, such as stars, polygons, and rosettes, arranged in an aesthetically pleasing manner
 
 ## Features
+
 - Display of girih pattern with hover effect
 - Responsive design to ensure compatibility with all devices
 - Typechecking with PropTypes for better code reliability
@@ -92,7 +93,8 @@ portfolio/
   │   ├── App.js          # Main application component
   │   ├── index.js        # Entry point of the application
   │   ├── index.html      # Entry point for Parcel bundler
-  │   ├── Shape.js        # The seed SVG shape
+  │   ├── Girih.js        # The background generation from tiles
+  │   ├── Tile.js         # The seed SVG shape
   │   ├── styles.css      # Boilerplate styles for the projects
   ├── .gitignore          # List of files and directories ignored by Git
   ├── package.json        # Project dependencies and scripts

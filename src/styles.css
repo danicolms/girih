@@ -31,7 +31,7 @@
 }
 
 :root {
-  background: rgb(var(--white));
+  background: linear-gradient(90deg, #fdbb2d 0%, #3a1c71 100%);
 }
 
 .tile {
@@ -41,7 +41,7 @@
 
   object-fit: cover;
 
-  stroke: rgba(var(--black), 0.5);
+  stroke: rgba(var(--black), 0.7);
   stroke-width: 0.03px;
 
   transition: stroke 0.1s;
