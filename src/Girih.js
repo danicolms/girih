@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 
 import Tile from "./Tile";
 
+// If you change this value, remember to
+// change the width of the tile in the style.css.
+// accordingly.
+
 const RATIO = 2;
 
 function Girih() {
