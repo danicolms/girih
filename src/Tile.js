@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 Tile.propTypes = {
-  className: PropTypes.string,
+  className: PropTypes.string.isRequired,
 };
 
 function Tile({ className }) {
