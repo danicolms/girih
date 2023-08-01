@@ -1,9 +1,24 @@
-@keyframes fadeInAnimation {
-  0% {
-    opacity: 0;
-  }
+@keyframes rotateright {
+  0%,
   100% {
-    opacity: 1;
+    opacity: 100%;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 50%;
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes rotateleft {
+  0%,
+  100% {
+    opacity: 100%;
+    transform: scaleX(-1);
+  }
+  50% {
+    opacity: 50%;
+    transform: scaleX(1);
   }
 }
 
@@ -12,25 +27,21 @@
 }
 
 :root {
-  background: whitesmoke;
+  background: rgb(var(--white));
 }
 
 .tile {
   opacity: 0%;
 
-  width: var(--ratio);
+  width: 2%;
   object-fit: cover;
 
-  stroke: lightgrey;
+  stroke: rgba(var(--black), 0.5);
   stroke-width: 0.03px;
 
   transition: stroke 0.1s;
-  animation: fadeInAnimation 1s ease 2s normal forwards;
-}
 
-.tile:hover {
-  stroke: gold;
-  stroke-width: 0.08px;
+  animation: 3s ease 2 rotateright forwards;
 }
 
 .tile > path {
@@ -40,6 +51,8 @@
 
 .is-inverted {
   transform: scaleX(-1);
+
+  animation: 2s ease 3 rotateleft forwards;
 }
 
 .row {
